@@ -13,7 +13,7 @@ export default function (context, inject) {
 
   function addScript () {
     const script = document.createElement('script')
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCXro-hkUGKryBEjp3LGr5mAg7gzkMhwAQ&callback=initMap'
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.googleApiKey}&callback=initMap`
     script.async = true
     window.initMap = initMap
     document.head.appendChild(script)
@@ -32,7 +32,6 @@ export default function (context, inject) {
     if (mapLoaded) { renderMap(canvas, lat, lng) } else { mapWaiting = { canvas, lat, lng } }
   }
   function renderMap (canvas, lat, lng) {
-    console.log('mounted')
     const mapOptions = {
       zoom: 18,
       center: new window.google.maps.LatLng(lat, lng),
