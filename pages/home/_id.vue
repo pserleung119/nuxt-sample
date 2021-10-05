@@ -13,7 +13,7 @@
     <div v-for="review in reviews" :key="review.objectID">
       <img :src="review.reviewer.image"><br>
       {{ review.reviewer.name }} <img src="/images/star.svg" width="20" height="20">{{ review.rating }}<br>
-      {{ review.date }}
+      {{ formatDate(review.date) }}<br>
       {{ review.comment }}
     </div>
   </div>
@@ -40,6 +40,13 @@ export default {
 
   mounted () {
     this.$maps.showMap(this.$refs.map, this.home._geoloc.lat, this.home._geoloc.lng)
+  },
+
+  methods: {
+    formatDate(dateStr) {
+      const date = new Date(dateStr)
+      return date.toLocaleString()
+    }
   }
 }
 </script>
