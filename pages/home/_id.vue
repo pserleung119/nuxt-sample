@@ -22,13 +22,16 @@
 export default {
 
   async asyncData ({ params, $dataApi, error }) {
-    const homeResponse = await $dataApi.getHome(params.id)
-    if (!homeResponse.ok) { return error({ statusCode: homeResponse.status, message: homeResponse.statusText }) }
-    const reviewResponse = await $dataApi.getReviews(params.id)
-    if (!reviewResponse.ok) { return error({ statusCode: reviewResponse.status, message: reviewResponse.statusText }) }
+    const responses = await Promise.all([
+      $dataApi.getHome(params.id),
+      $dataApi.getReviews(params.id)
+    ])
+
+    const badResponse = responses.find(response => !response.ok)
+    if (badResponse) { return error({ statusCode: badResponse.status, message: badResponse.statusText }) }
     return {
-      home: homeResponse.json,
-      reviews: reviewResponse.json.hits
+      home: responses[0].json,
+      reviews: responses[1].json.hits
     }
   },
 
