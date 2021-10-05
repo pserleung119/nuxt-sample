@@ -13,6 +13,16 @@ export default {
     return {
       homes: homes.slice(0, 3)
     }
+  },
+  head () {
+    return {
+      title: 'Homepage',
+      meta: [{
+        name: 'description',
+        content: 'This is a homepage!',
+        hid: 'description'
+      }]
+    }
   }
 }
 </script>
