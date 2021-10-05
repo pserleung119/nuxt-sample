@@ -43,7 +43,7 @@ export default {
   },
 
   methods: {
-    formatDate(dateStr) {
+    formatDate (dateStr) {
       const date = new Date(dateStr)
       return date.toLocaleString()
     }
