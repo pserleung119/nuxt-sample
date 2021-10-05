@@ -1,7 +1,8 @@
 export default function (context, inject) {
   inject('dataApi', {
     getHome,
-    getHomes
+    getHomes,
+    getReviews
   })
 
   const headers = {
@@ -20,6 +21,20 @@ export default function (context, inject) {
   async function getHome (homeId) {
     try {
       return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/homes/${homeId}`, { headers }))
+    } catch (error) {
+      return getErrorResponse(error)
+    }
+  }
+
+  async function getReviews (homeId) {
+    try {
+      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/home_reviews/query`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          filters: `homeId:${homeId}`
+        })
+      }))
     } catch (error) {
       return getErrorResponse(error)
     }
