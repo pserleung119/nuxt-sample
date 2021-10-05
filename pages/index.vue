@@ -11,10 +11,11 @@
 <script>
 export default {
 
-  async asyncData ({ params, $dataApi }) {
-    const homes = await $dataApi.getHomes()
+  async asyncData ({ params, $dataApi, error }) {
+    const response = await $dataApi.getHomes()
+    if (!response.ok) { return error({ statusCode: response.status, message: response.statusText }) }
     return {
-      homes
+      homes: response.json.hits
     }
   },
   head () {
