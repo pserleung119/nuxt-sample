@@ -13,13 +13,15 @@
   </div>
 </template>
 <script>
-import homes from '~/data/homes'
 export default {
-  data () {
+
+  async asyncData ({ params, $dataApi }) {
+    const home = await $dataApi.getHome(params.id)
     return {
-      home: {}
+      home
     }
   },
+
   head () {
     return {
       title: this.home.title
@@ -28,11 +30,6 @@ export default {
 
   mounted () {
     this.$maps.showMap(this.$refs.map, this.home._geoloc.lat, this.home._geoloc.lng)
-  },
-
-  created () {
-    const home = homes.find(home => home.objectID === this.$route.params.id)
-    this.home = home
   }
 }
 </script>
