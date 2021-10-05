@@ -1,8 +1,12 @@
+// context includes internal objects like VueStore, Router, etc.
+// Inject is given as the second parameter when exporting a function so you can use it across your app.
 export default function (context, inject) {
   let mapLoaded = false
   let mapWaiting = null
 
   addScript()
+  // First params will be registered as this.$${first param}
+  // ↓will inject showMap function to this.$map so you can call this.$map.showMap
   inject('maps', {
     showMap
   })
