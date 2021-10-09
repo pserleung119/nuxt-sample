@@ -12,7 +12,7 @@ export default function (context, inject) {
 
   async function getHomes () {
     try {
-      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/homes/`, { headers }))
+      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/dev_homes/`, { headers }))
     } catch (error) {
       return getErrorResponse(error)
     }
@@ -20,7 +20,7 @@ export default function (context, inject) {
 
   async function getHome (homeId) {
     try {
-      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/homes/${homeId}`, { headers }))
+      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/dev_homes/${homeId}`, { headers }))
     } catch (error) {
       return getErrorResponse(error)
     }
@@ -28,7 +28,7 @@ export default function (context, inject) {
 
   async function getReviews (homeId) {
     try {
-      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/home_reviews/query`, {
+      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/dev_home_reviews/query`, {
         headers,
         method: 'POST',
         body: JSON.stringify({
