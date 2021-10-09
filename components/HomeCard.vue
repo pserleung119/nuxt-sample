@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <img :src="home.images[0]" style="width:200px"><br/>
-    {{ home.title }}<br>
-    {{ home.location.address }} {{ home.location.city }} {{ home.location.state }}<br>
-    {{ home.guests }} guests<br>
-    {{ home.pricePerNight }} / night<br>
+  <div class="d-flex my-2 p-4 home-card border rounded">
+    <div class="home-img col-3">
+      <img :src="home.images[0]">
+    </div>
+    <div class="col text-dark">
+      <h2>{{ home.title }}</h2>
+      <h5>{{ home.location.address }} {{ home.location.city }} {{ home.location.state }}</h5>
+      <p>{{ home.guests }} guests</p>
+      <p>${{ home.pricePerNight }} / night</p>
+    </div>
   </div>
 </template>
 <script>
@@ -17,3 +21,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+img {
+  width: 100%;
+  height: 100%;
+}
+</style>

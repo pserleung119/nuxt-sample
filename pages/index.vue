@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div v-for="home in homes" :key="home.objectID" style="float:left;margin:10px">
-      <nuxt-link :to="`/home/${home.objectID}`" no-prefetch>
+  <div class="d-flex flex-wrap">
+    <div v-for="home in homes" :key="home.objectID" class="col-12">
+      <nuxt-link :to="`/home/${home.objectID}`" class="home-card" no-prefetch>
         <home-card :home="home" />
       </nuxt-link>
     </div>
@@ -30,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home-card:hover {
+  text-decoration: none;
+}
+</style>
