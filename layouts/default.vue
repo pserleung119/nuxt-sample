@@ -1,10 +1,7 @@
 <template>
   <div>
-    <header style="background-color:#eee;">
-      <nuxt-link to="/">
-        Home
-      </nuxt-link>
-    </header>
-    <nuxt />
+    <Header style="background-color:#eee;" />
+    <nuxt class="container" />
   </div>
 </template>
+

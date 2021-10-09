@@ -46,7 +46,27 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.FIREBASE_API_KEY,
+          authDomain: 'nuxtbnb-27124.firebaseapp.com',
+          projectId: 'nuxtbnb-27124',
+          storageBucket: 'nuxtbnb-27124.appspot.com',
+          messagingSenderId: '884048375137',
+          appId: '1:884048375137:web:3b8a5083a6117c531ce920'
+        },
+        services: {
+          auth: {
+            persistence: 'local' // https://firebase.google.com/docs/auth/web/auth-state-persistence
+          },
+          firestore: true,
+          database: true
+        }
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,6 +79,7 @@ export default {
   env: {
     googleApiKey: process.env.GOOGLE_API_KEY,
     algoliaAppId: process.env.ALGOLIA_APP_ID,
-    algoliaApiKey: process.env.ALGOLIA_API_KEY
+    algoliaApiKey: process.env.ALGOLIA_API_KEY,
+    firebaseApiKey: process.env.FIREBASE_API_KEY
   }
 }
