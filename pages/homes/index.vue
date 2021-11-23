@@ -59,7 +59,6 @@ export default {
     '$route.fullPath': {
       handler (newUrl, oldUrl) {
         if (oldUrl !== newUrl) {
-          alert('e')
           window.location.reload()
         }
       }
