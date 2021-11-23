@@ -1,0 +1,73 @@
+@import 'node_modules/swiper/css/swiper';
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-top: -36px;
+  background-color: #fff;
+  color: $base;
+  border-radius: 50%;
+  box-shadow: 0 2px 3px rgba(66, 66, 66, 0.4), 0 3px 6px 4px rgba(66, 66, 66, 0.1);
+  transition: all .2s;
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+
+  &:hover {
+    box-shadow: 0 3px 4px 1px rgba(66, 66, 66, 0.35), 0 4px 10px 6px rgba(66, 66, 66, 0.08);
+    color: $primary;
+    background-color: $pink-100;
+  }
+
+  &::after {
+    @include font-size(26);
+    font-family: 'icomoon';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  &.swiper-button-disabled {
+    display: none;
+  }
+}
+
+.swiper-button-prev {
+  left: -20px;
+  &::after {
+    content: "\e916";
+  }
+}
+
+.swiper-button-next {
+  right: -20px;
+  &::after {
+    content: "\e915";
+  }
+}
+
+.swiper-pagination {
+  position: relative;
+  bottom: 0 !important;
+  text-align: right;
+  padding-top: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $base !important;
+}
+
+.swiper-pagination-bullet:only-child {
+  display: none;
+}
+
+.swiper-container {
+  position: static;
+}
+
+.swiper-slide {
+  height: auto;
+}

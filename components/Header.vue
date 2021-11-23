@@ -65,7 +65,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(20, 20, 20);
+  background-color: #2F353E;
 }
 a {
   margin-right: 5px;

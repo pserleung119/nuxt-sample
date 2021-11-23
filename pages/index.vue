@@ -1,9 +1,25 @@
 <template>
   <div class="d-flex flex-wrap">
-    <div v-for="home in homes" :key="home.objectID" class="col-12">
-      <nuxt-link :to="`/home/${home.objectID}`" class="home-card" no-prefetch>
-        <home-card :home="home" />
-      </nuxt-link>
+    <section class="search-form w-100 d-flex justify-content-center align-items-center">
+      <div class="col-6">
+        <form>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for house">
+            <div class="input-group-append">
+              <button id="button-addon2" class="btn btn-primary" type="button">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <div class="container">
+      <div v-for="home in homes" :key="home.objectID" class="col-12 px-0">
+        <nuxt-link :to="`/home/${home.objectID}`" class="home-card" no-prefetch>
+          <home-card :home="home" />
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -32,6 +48,12 @@ export default {
 </script>
 
 <style scoped>
+.search-form {
+  height: 600px;
+  background-image: url('/images/hero.jpeg');
+  background-position: center;
+  background-size: cover;
+}
 .home-card:hover {
   text-decoration: none;
 }

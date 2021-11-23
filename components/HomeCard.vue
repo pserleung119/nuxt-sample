@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex my-2 p-4 home-card border rounded">
+  <div class="d-flex my-3 p-4 home-card border rounded">
     <div class="home-img col-3 d-none d-lg-block">
       <img :src="home.images[0]">
     </div>
