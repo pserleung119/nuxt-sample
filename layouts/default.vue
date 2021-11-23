@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Header style="background-color:#eee;" />
-    <nuxt class="container" />
+    <Header />
+    <nuxt class="container py-5" />
   </div>
 </template>
-

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="display:flex;">
+    <div class="d-flex flex-wrap">
       <img v-for="image in home.images" :key="image" :src="image" width="200" height="150">
     </div>
     {{ home.title }}<br>
@@ -9,7 +9,7 @@
     <img src="/images/star.svg" width="20" height="20">{{ home.reviewValue }} <br>
     {{ home.guests }} guests, {{ home.bedrooms }} rooms, {{ home.beds }} beds, {{ home.bathrooms }} bath<br>
     {{ home.description }}
-    <div ref="map" style="height: 800px; width: 800px;" />
+    <div ref="map" style="height: 80vw; width: 80vw;" />
     <div v-for="review in reviews" :key="review.objectID">
       <img :src="review.reviewer.image"><br>
       {{ review.reviewer.name }} <img src="/images/star.svg" width="20" height="20">{{ review.rating }}<br>

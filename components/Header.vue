@@ -65,8 +65,20 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: rgb(20, 20, 20);
 }
 a {
   margin-right: 5px;
+  color: #f0f0f0;
+  transition-duration: 0.1s;
+}
+button {
+  color: #f0f0f0;
+  transition-duration: 0.1s;
+}
+
+a:hover, button:hover {
+  color: #ffffff;
+  text-decoration: none;
 }
 </style>
