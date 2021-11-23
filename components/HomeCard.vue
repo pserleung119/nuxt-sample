@@ -4,10 +4,10 @@
       <img :src="home.images[0]">
     </div>
     <div class="col text-dark">
-      <h2>{{ home.title }}</h2>
-      <h5>{{ home.location.address }} {{ home.location.city }} {{ home.location.state }}</h5>
-      <p>{{ home.guests }} guests</p>
-      <p>${{ home.pricePerNight }} / night</p>
+      <h4>{{ home.title }}</h4>
+      <p class="address">{{ home.location.address }} {{ home.location.city }} {{ home.location.state }}</p>
+      <p class="mb-1">{{ home.guests }} guests</p>
+      <p class="mb-1">${{ home.pricePerNight }} / night</p>
     </div>
   </div>
 </template>
@@ -22,10 +22,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/styles/main.scss";
+
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.address {
+  color: $gray-700;
 }
 </style>

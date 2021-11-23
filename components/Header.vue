@@ -1,8 +1,8 @@
 <template>
-  <div class="header px-4">
+  <nav class="header px-4">
     <div class="links">
       <nuxt-link to="/">
-        Home
+        NuxtBnb
       </nuxt-link>
     </div>
 
@@ -11,7 +11,7 @@
     </div>
     <div v-else class="user-links">
       <div v-if="signedIn">
-        <button type="button" class="btn btn-link" @click="signout">Signout</button>
+        <button type="button" class="btn btn-links signout-btn" @click="signout">Signout</button>
       </div>
       <div v-else class="non-signed-in">
         <nuxt-link to="/signin">
@@ -22,7 +22,7 @@
         </nuxt-link>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -59,26 +59,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/styles/main.scss";
+
 .header {
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #2F353E;
+  background-color: $gray-900;
 }
 a {
   margin-right: 5px;
-  color: #f0f0f0;
+  color: $gray-300;
   transition-duration: 0.1s;
 }
-button {
-  color: #f0f0f0;
+.signout-btn {
+  color: $gray-300;
   transition-duration: 0.1s;
 }
 
-a:hover, button:hover {
-  color: #ffffff;
+a:hover, .signout-btn:hover {
+  color: $gray-100;
   text-decoration: none;
 }
 </style>
