@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex my-2 p-4 home-card border rounded">
-    <div class="home-img col-3 d-none d-md-block">
+    <div class="home-img col-3 d-none d-lg-block">
       <img :src="home.images[0]">
     </div>
     <div class="col text-dark">
@@ -26,5 +26,6 @@ export default {
 img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 </style>
