@@ -3,25 +3,35 @@
     <div class="position-relative">
       <swiper :options="swiperOptions">
         <swiper-slide v-for="image in home.images" :key="image">
-          <img :src="image" width="200" height="150">
+          <img :src="image" width="350" height="300">
         </swiper-slide>
         <div slot="pagination" class="swiper-pagination" />
-        <div slot="button-prev" class="swiper-button-prev" />
-        <div slot="button-next" class="swiper-button-next" />
       </swiper>
     </div>
-    {{ home.title }}<br>
-    ${{ home.pricePerNight }} / night<br>
-    <img src="/images/marker.svg" width="20" height="20">{{ home.location.address }} {{ home.location.city }} {{ home.location.state }} {{ home.location.country }}<br>
-    <img src="/images/star.svg" width="20" height="20">{{ home.reviewValue }} <br>
-    {{ home.guests }} guests, {{ home.bedrooms }} rooms, {{ home.beds }} beds, {{ home.bathrooms }} bath<br>
-    {{ home.description }}
-    <div ref="map" style="height: 80vw; width: 80vw;" />
-    <div v-for="review in reviews" :key="review.objectID">
-      <img :src="review.reviewer.image"><br>
-      {{ review.reviewer.name }} <img src="/images/star.svg" width="20" height="20">{{ review.rating }}<br>
-      {{ formatDate(review.date) }}<br>
-      {{ review.comment }}
+    <div class="container d-flex flex-wrap py-4">
+      <div class="py-0 py-md-4 col-12 col-md-6">
+        <h3>{{ home.title }}</h3>
+        <p class="mb-1">
+          ${{ home.pricePerNight }} / night
+        </p>
+        <div class="">
+          <img src="/images/marker.svg" width="20" height="20" class="mr-2"><span>{{ home.location.address }} {{ home.location.city }} {{ home.location.state }} {{ home.location.country }}</span>
+        </div>
+        <div>
+          <img src="/images/star.svg" width="20" height="20" class="mr-2">{{ home.reviewValue }}
+        </div>
+        <p>{{ home.guests }} guests, {{ home.bedrooms }} rooms, {{ home.beds }} beds, {{ home.bathrooms }} bath</p>
+        <p>{{ home.description }}</p>
+      </div>
+      <div class="py-0 py-md-4 col-12 col-md-6">
+        <div ref="map" style="width: 100%; height: 25rem;" />
+      </div>
+      <div v-for="review in reviews" :key="review.objectID">
+        <img :src="review.reviewer.image"><br>
+        {{ review.reviewer.name }} <img src="/images/star.svg" width="20" height="20">{{ review.rating }}<br>
+        {{ formatDate(review.date) }}<br>
+        {{ review.comment }}
+      </div>
     </div>
   </div>
 </template>
@@ -52,7 +62,7 @@ export default {
   data () {
     return {
       swiperOptions: {
-        spaceBetween: 5,
+        spaceBetween: 0,
         breakpoints: {
           0: {
             slidesPerView: 1.4,
@@ -66,10 +76,6 @@ export default {
             slidesPerView: 4,
             slidesPerGroup: 4
           }
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
         },
         pagination: {
           el: '.swiper-pagination',
@@ -101,3 +107,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+img {
+  object-fit: cover;
+}
+</style>
