@@ -1,7 +1,14 @@
 <template>
   <div>
-    <div class="d-flex flex-wrap">
-      <img v-for="image in home.images" :key="image" :src="image" width="200" height="150">
+    <div class="position-relative">
+      <swiper :options="swiperOptions">
+        <swiper-slide v-for="image in home.images" :key="image">
+          <img :src="image" width="200" height="150">
+        </swiper-slide>
+        <div slot="pagination" class="swiper-pagination" />
+        <div slot="button-prev" class="swiper-button-prev" />
+        <div slot="button-next" class="swiper-button-next" />
+      </swiper>
     </div>
     {{ home.title }}<br>
     ${{ home.pricePerNight }} / night<br>
@@ -19,7 +26,14 @@
   </div>
 </template>
 <script>
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
 export default {
+
+  components: {
+    Swiper,
+    SwiperSlide
+  },
 
   async asyncData ({ params, $dataApi, error }) {
     const responses = await Promise.all([
@@ -32,6 +46,40 @@ export default {
     return {
       home: responses[0].json,
       reviews: responses[1].json.hits
+    }
+  },
+
+  data () {
+    return {
+      swiperOptions: {
+        spaceBetween: 5,
+        breakpoints: {
+          0: {
+            slidesPerView: 1.4,
+            slidesPerGroup: 1
+          },
+          768: {
+            slidesPerView: 3,
+            slidesPerGroup: 3
+          },
+          1200: {
+            slidesPerView: 4,
+            slidesPerGroup: 4
+          }
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        mousewheel: {
+          forceToAxis: true
+        },
+        freeMode: true
+      }
     }
   },
 
