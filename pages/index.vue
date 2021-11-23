@@ -1,22 +1,23 @@
 <template>
-  <div class="d-flex flex-wrap">
+  <div>
     <section class="search-form w-100 d-flex justify-content-center align-items-center">
       <div class="col-6">
-        <form>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for house">
-            <div class="input-group-append">
-              <button id="button-addon2" class="btn btn-primary" type="button">
-                Search
-              </button>
-            </div>
+        <div class="input-group">
+          <input v-model="keyword" type="text" class="form-control" placeholder="Search for house">
+          <div class="input-group-append">
+            <button id="button-addon2" class="btn btn-primary" type="button" @click="searchHomes">
+              Search
+            </button>
           </div>
-        </form>
+        </div>
       </div>
     </section>
-    <div class="container">
+    <div class="container pt-5">
+      <h3 class="font-weight-bold mb-4">
+        Featured Homes
+      </h3>
       <div v-for="home in homes" :key="home.objectID" class="col-12 px-0">
-        <nuxt-link :to="`/home/${home.objectID}`" class="home-card" no-prefetch>
+        <nuxt-link :to="`/homes/${home.objectID}`" class="home-card" no-prefetch>
           <home-card :home="home" />
         </nuxt-link>
       </div>
@@ -28,20 +29,31 @@
 export default {
 
   async asyncData ({ params, $dataApi, error }) {
-    const response = await $dataApi.getHomes()
+    const response = await $dataApi.getFeaturedHomes()
     if (!response.ok) { return error({ statusCode: response.status, message: response.statusText }) }
+
     return {
       homes: response.json.hits
     }
   },
+  data () {
+    return {
+      keyword: ''
+    }
+  },
   head () {
     return {
-      title: 'Homepage',
+      title: 'NuxtSample',
       meta: [{
         name: 'description',
-        content: 'This is a homepage!',
+        content: 'This is a nuxt sample app!',
         hid: 'description'
       }]
+    }
+  },
+  methods: {
+    searchHomes () {
+      this.$router.push(`/homes?page=0&search=${this.keyword}`)
     }
   }
 }

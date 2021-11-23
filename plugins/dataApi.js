@@ -2,7 +2,9 @@ export default function (context, inject) {
   inject('dataApi', {
     getHome,
     getHomes,
-    getReviews
+    getReviews,
+    getFeaturedHomes,
+    getFilteredHomes
   })
 
   const headers = {
@@ -13,6 +15,37 @@ export default function (context, inject) {
   async function getHomes () {
     try {
       return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/dev_homes/`, { headers }))
+    } catch (error) {
+      return getErrorResponse(error)
+    }
+  }
+
+  async function getFeaturedHomes () {
+    try {
+      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/dev_homes/query`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          hitsPerPage: 5,
+          page: 0
+        })
+      }))
+    } catch (error) {
+      return getErrorResponse(error)
+    }
+  }
+
+  async function getFilteredHomes (query, page) {
+    try {
+      return unWrap(await fetch(`https://${process.env.algoliaAppId}-dsn.algolia.net/1/indexes/dev_homes/query`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          query,
+          hitsPerPage: 5,
+          page
+        })
+      }))
     } catch (error) {
       return getErrorResponse(error)
     }

@@ -8,6 +8,7 @@
       <p class="address">{{ home.location.address }} {{ home.location.city }} {{ home.location.state }}</p>
       <p class="mb-1">{{ home.guests }} guests</p>
       <p class="mb-1">${{ home.pricePerNight }} / night</p>
+      <p>{{ home.reviewValue }}</p>
     </div>
   </div>
 </template>
